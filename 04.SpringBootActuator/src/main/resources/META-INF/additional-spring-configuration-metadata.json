@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "management.security.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'management.security.enabled'"
+  },
+  {
+    "name": "security.basic.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'security.basic.enabled'"
+  },
+  {
+    "name": "security.user.name",
+    "type": "java.lang.String",
+    "description": "A description for 'security.user.name'"
+  },
+  {
+    "name": "security.user.passowrd",
+    "type": "java.lang.String",
+    "description": "A description for 'security.user.passowrd'"
+  },
+  {
+    "name": "management.security.roles",
+    "type": "java.lang.String",
+    "description": "A description for 'management.security.roles'"
+  }
+]}
