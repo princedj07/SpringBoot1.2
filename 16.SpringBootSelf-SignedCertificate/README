@@ -1,0 +1,70 @@
+https://localhost:8443/home/
+
+Run CMD as administrator
+
+C:\Program Files\Java\jdk-13\bin
+
+keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore keystore.p12 -validity 3650 -storepass password
+
+yes
+
+keystore will genrated
+
+***********************************************************************************************************************************************
+
+JKS keystore:
+
+keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -keystore keystore.jks -validity 3650 -storepass password
+
+PKCS12 keystore :
+
+keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore keystore.p12 -validity 3650 -storepass password
+
+***********************************************************************************************************************************************
+
+What is your first and last name? 
+    [Unknown]: 
+What is the name of your organizational unit? 
+    [Unknown]: 
+What is the name of your organization? 
+    [Unknown]: 
+What is the name of your City or Locality? 
+    [Unknown]: 
+What is the name of your State or Province? 
+    [Unknown]: 
+What is the two-letter country code for this unit? 
+    [Unknown]: 
+Is CN=localhost, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown correct? 
+    [no]: yes 
+
+
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 3,650 days
+        for: CN=prince, OU=007, O=dj, L=mumbai, ST=maharastra, C=91
+        
+***********************************************************************************************************************************************        
+        
+ Verify the keystore content
+To check the content of the keystore following the JKS format, we can use keytool again:
+
+	 keytool -list -v -keystore keystore.jks
+
+To test the content of a keystore following the PKCS12 format:
+
+	keytool -list -v -storetype pkcs12 -keystore keystore.p12
+	
+Convert a JKS keystore into PKCS12
+Should we have already a JKS keystore, we have the option to migrate it to PKCS12; keytool has a convenient command for that:
+
+	keytool -importkeystore -srckeystore keystore.jks -destkeystore keystore.p12 -deststoretype pkcs12
+	
+        
+***********************************************************************************************************************************************        
+
+
+1b. Use an existing SSL certificate
+
+In case we have already got an SSL certificate, for example, one issued by Let's Encrypt, we can import it into a keystore and use it to enable HTTPS in a Spring Boot application.
+We can use keytool to import our certificate in a new keystore.
+
+	keytool -import -alias tomcat -file myCertificate.crt -keystore keystore.p12 -storepass password
+
